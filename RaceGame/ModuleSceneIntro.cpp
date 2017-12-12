@@ -38,6 +38,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+
+	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
+	{
+		item->data.Render();
+	}
 	return UPDATE_CONTINUE;
 }
 
