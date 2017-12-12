@@ -22,12 +22,14 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
-	Cube road1(5, 10, 10);
+	Cube road1(10, 1, 10);
 	road1.SetPos(0, 0, 0);
 	roads.add(road1);
 
-	Cube
-	
+	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
+	{
+		App->physics->AddBody(item->data, 0);
+	}
 
 	return ret;
 }
