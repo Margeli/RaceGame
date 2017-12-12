@@ -1,8 +1,10 @@
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "ModulePhysics3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -19,6 +21,13 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
+
+	Cube road1(5, 10, 10);
+	road1.SetPos(0, 0, 0);
+	roads.add(road1);
+
+	Cube
+	
 
 	return ret;
 }
@@ -38,11 +47,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-
 	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
 	{
 		item->data.Render();
 	}
+
 	return UPDATE_CONTINUE;
 }
 
