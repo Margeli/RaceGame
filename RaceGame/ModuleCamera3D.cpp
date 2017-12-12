@@ -15,7 +15,7 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	Position = vec3(0.0f, 50.0f, 0.0f);
 	Reference = vec3(0.0f, 0.0f, 0.0f);
 
-	offset_to_player = vec3(0.0f, 8.0f, -15.0f);
+	offset_to_player = vec3(0.0f, 15.0f, -15.0f);
 }
 
 ModuleCamera3D::~ModuleCamera3D()
