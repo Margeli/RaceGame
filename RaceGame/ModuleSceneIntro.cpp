@@ -56,57 +56,37 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 void ModuleSceneIntro::StartTerrain()
 {
-	Cube road1(20, 1, 150);
-	road1.SetPos(0, 0, 0);
-	roads.add(road1);
+	Cube road1(20, 15, 150);	road1.SetPos(0, 0, 0);				road1.color = Grey;		roads.add(road1);
 
-	Cube road2(150, 1, 20);
-	road2.SetPos(65, 0, 85);
-	roads.add(road2);
+	Cube road2(150, 15, 20);	road2.SetPos(65, 0, 85);			road2.color = Grey;		roads.add(road2);
 
-	Cube road3(25, 1, 75);
-	road3.SetPos(127.5f, 0, 37.5f);
-	roads.add(road3);
+	Cube road3(25, 15, 75);		road3.SetPos(127.5f, 0, 37.5f);		road3.color = Grey;		roads.add(road3);
 
-	Cube road4(75, 1, 20);
-	road4.SetPos(102.5f, 0, -10);
-	roads.add(road4);
+	Cube road4(75, 15, 20);		road4.SetPos(102.5f, 0, -10);		road4.color = Grey;		roads.add(road4);
 
-	Cube road5(25, 1, 37.5f);
-	road5.SetPos(77.5f, 0, -38.75f);
-	roads.add(road5);
+	Cube road5(25, 15, 37.5f);	road5.SetPos(77.5f, 0, -38.75f);	road5.color = Grey;		roads.add(road5);
 
-	Cube road6(150, 1, 20);
-	road6.SetPos(140, 0, -67.5f);
-	roads.add(road6);
+	Cube road6(150, 15, 20);	road6.SetPos(140, 0, -67.5f);		road6.color = Grey;		roads.add(road6);
 
-	Cube road7(20, 1, 37.5f);
-	road7.SetPos(205, 0, -96.25f);
-	roads.add(road7);
+	Cube road7(20, 15, 37.5f);	road7.SetPos(205, 0, -96.25f);		road7.color = Grey;		roads.add(road7);
 
-	Cube road8(112.5f, 1, 20);//total line : (225, 15, 20);
-	road8.SetPos(158.75f, 0, -125);
-	roads.add(road8);
+	Cube road8(112.5f, 15, 20);	road8.SetPos(158.75f, 0, -125);		road8.color = Grey;		roads.add(road8);
 
-	Cube road9(75, 1, 7.5f);
-	road9.SetPos(65, 0, -117.5f);
-	roads.add(road9);
+	Cube road9(75, 15, 7.5f);	road9.SetPos(65, 0, -117.5f);		road9.color = Grey;		roads.add(road9);
 
-	Cube road10(75, 1, 7.5f);
-	road10.SetPos(65, 0, -132.5f);
-	roads.add(road10);
+	Cube road10(75, 15, 7.5f);	road10.SetPos(65, 0, -132.5f);		road10.color = Grey;	roads.add(road10);
+			
+	Cube road11(37.5f, 15, 20);	road11.SetPos(8.75f, 0, -125);		road11.color = Grey;	roads.add(road11);
 
-	Cube road11(37.5f, 1, 20);
-	road11.SetPos(8.75f, 0, -125);
-	roads.add(road11);
+	Cube road12(20, 15, 40);	road12.SetPos(0, 0, -95);			road12.color = Grey;	roads.add(road12);
 
-	Cube road12(20, 1, 40);
-	road12.SetPos(0, 0, -95);
-	roads.add(road12);
+	//Borders of road
+	Cube border1(2, 18, 230);	border1.SetPos(-11, 0, -20);		border1.color = Grey;	roads.add(border1);
 
 	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
 	{
 		App->physics->AddBody(item->data, 0);
 	}
+
 
 }
