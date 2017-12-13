@@ -81,7 +81,9 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road12(20, 15, 40);	road12.SetPos(0, 0, -95);			road12.color = Grey;	roads.add(road12);
 
 	//Borders of road
-	Cube border1(2, 18, 230);	border1.SetPos(-11, 0, -20);		border1.color = Grey;	roads.add(border1);
+	/*Cube border1(2, 18, 230);	border1.SetPos(-11, 0, -20);		border1.color = Grey;	roads.add(border1);
+*/
+	Cube test(20, 15, 200);		test.SetPos(-20, 0, 0);				test.SetRotation(-5, {1, 0, 0});		roads.add(test);
 
 	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
 	{
