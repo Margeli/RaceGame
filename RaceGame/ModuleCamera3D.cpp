@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "PhysBody3D.h"
+#include "PhysVehicle3D.h"
 #include "ModuleCamera3D.h"
 #include "ModulePlayer.h"
 
@@ -11,6 +12,9 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	X = vec3(1.0f, 0.0f, 0.0f);
 	Y = vec3(0.0f, 1.0f, 0.0f);
 	Z = vec3(0.0f, 0.0f, 1.0f);
+
+	
+	
 
 	Position = vec3(0.0f, 50.0f, 0.0f);
 	Reference = vec3(0.0f, 0.0f, 0.0f);
@@ -97,7 +101,7 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 
 	Position = Reference + Z * length(Position);
-	}*/
+	}
 
 	vec3 newLookingPoint;
 	newLookingPoint.x = App->player->getPos().x();
@@ -117,7 +121,16 @@ update_status ModuleCamera3D::Update(float dt)
 	newPosition.x += App->player->getAxisZ().x * offset_to_player.z;
 	newPosition.z += App->player->getAxisZ().z * offset_to_player.z;
 
-	Look(newPosition, newLookingPoint, true);
+	Look(newPosition, newLookingPoint, true);*/
+	
+	Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 10* App->player->vehicle->vehicle->getForwardVector().getX();
+	Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() +5* App->player->vehicle->vehicle->getUpAxis();
+	Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 15*App->player->vehicle->vehicle->getForwardVector().getZ();
+	
+	float player_x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() +15 * App->player->vehicle->vehicle->getForwardVector().getX();
+	float player_z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15 * App->player->vehicle->vehicle->getForwardVector().getZ();
+	
+	LookAt(vec3(player_x, 1, player_z));
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();

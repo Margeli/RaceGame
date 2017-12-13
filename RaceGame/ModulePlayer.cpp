@@ -115,20 +115,20 @@ btVector3 ModulePlayer::getPos() const
 	return vehicle->GetPos();
 }
 
-vec3 ModulePlayer::getAxisX() const
-{
-	return vehicle->getAxisX();
-}
-
-vec3 ModulePlayer::getAxisY() const
-{
-	return vehicle->getAxisY();
-}
-
-vec3 ModulePlayer::getAxisZ() const
-{
-	return vehicle->getAxisZ();
-}
+//vec3 ModulePlayer::getAxisX() const
+//{
+//	return vehicle->getAxisX();
+//}
+//
+//vec3 ModulePlayer::getAxisY() const
+//{
+//	return vehicle->getAxisY();
+//}
+//
+//vec3 ModulePlayer::getAxisZ() const
+//{
+//	return vehicle->getAxisZ();
+//}
 
 // Update: draw background
 update_status ModulePlayer::Update(float dt)

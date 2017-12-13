@@ -25,8 +25,10 @@ private:
 public:
 	
 	vec3 X, Y, Z, Position, Reference;
+	
 
 private:
 	vec3 offset_to_player;
+	
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };

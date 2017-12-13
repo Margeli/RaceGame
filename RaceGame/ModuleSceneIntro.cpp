@@ -56,6 +56,8 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 void ModuleSceneIntro::StartTerrain()
 {
+
+	// create a struct info to do it in a just one line
 	Cube road1(20, 15, 150);	road1.SetPos(0, 0, 0);				road1.color = Grey;		roads.add(road1);
 
 	Cube road2(150, 15, 20);	road2.SetPos(65, 0, 85);			road2.color = Grey;		roads.add(road2);

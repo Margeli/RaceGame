@@ -93,7 +93,7 @@ float PhysVehicle3D::GetKmh() const
 {
 	return vehicle->getCurrentSpeedKmHour();
 }
-
+/*
 vec3 PhysVehicle3D::getAxisX()
 {
 	btQuaternion q = vehicle->getRigidBody()->getOrientation();
@@ -140,4 +140,4 @@ vec3 PhysVehicle3D::getAxisZ()
 	vec3 originalAxis(0.0f, 0.0f, 1.0f);
 
 	return rotMat*originalAxis;
-}
+}*/
