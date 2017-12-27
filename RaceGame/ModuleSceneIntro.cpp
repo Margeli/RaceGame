@@ -53,43 +53,31 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 }
 
+Cube ModuleSceneIntro::CreateFloor(float width, float height, float large, float x, float y, float z, Color color)
+{
+	Cube ret(width, height, large);
+	ret.SetPos(x, y, z);
+	ret.color = color;
+
+	roads.add(ret);
+
+	App->physics->AddBody(ret, 0);
+	return ret;
+}
+
 void ModuleSceneIntro::StartTerrain()
 {
-
-	// create a struct info to do it in a just one line
-	Cube road1(20, 15, 150);	road1.SetPos(0, 0, 0);				road1.color = Grey;		roads.add(road1);
-
-	Cube road2(150, 15, 20);	road2.SetPos(65, 0, 85);			road2.color = Grey;		roads.add(road2);
-
-	Cube road3(25, 15, 75);		road3.SetPos(127.5f, 0, 37.5f);		road3.color = Grey;		roads.add(road3);
-
-	Cube road4(75, 15, 20);		road4.SetPos(102.5f, 0, -10);		road4.color = Grey;		roads.add(road4);
-
-	Cube road5(25, 15, 37.5f);	road5.SetPos(77.5f, 0, -38.75f);	road5.color = Grey;		roads.add(road5);
-
-	Cube road6(150, 15, 20);	road6.SetPos(140, 0, -67.5f);		road6.color = Grey;		roads.add(road6);
-
-	Cube road7(20, 15, 37.5f);	road7.SetPos(205, 0, -96.25f);		road7.color = Grey;		roads.add(road7);
-
-	Cube road8(112.5f, 15, 20);	road8.SetPos(158.75f, 0, -125);		road8.color = Grey;		roads.add(road8);
-
-	Cube road9(75, 15, 7.5f);	road9.SetPos(65, 0, -117.5f);		road9.color = Grey;		roads.add(road9);
-
-	Cube road10(75, 15, 7.5f);	road10.SetPos(65, 0, -132.5f);		road10.color = Grey;	roads.add(road10);
-			
-	Cube road11(37.5f, 15, 20);	road11.SetPos(8.75f, 0, -125);		road11.color = Grey;	roads.add(road11);
-
-	Cube road12(20, 15, 40);	road12.SetPos(0, 0, -95);			road12.color = Grey;	roads.add(road12);
-
-	//Borders of road
-	/*Cube border1(2, 18, 230);	border1.SetPos(-11, 0, -20);		border1.color = Grey;	roads.add(border1);
-*/
-	Cube test(20, 15, 200);		test.SetPos(-20, 0, 0);				test.SetRotation(-5, {1, 0, 0});		roads.add(test);
-
-	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
-	{
-		App->physics->AddBody(item->data, 0);
-	}
-
+	Cube road1 = CreateFloor(20, 15, 150, 0, 0, 0, Grey);
+	Cube road2 = CreateFloor(150, 15, 20, 65, 0, 85, Grey);
+	Cube road3 = CreateFloor(25, 15, 75, 127.5f, 0, 37.5f, Grey);
+	Cube road4 = CreateFloor(75, 15, 20, 102.5f, 0, -10, Grey);
+	Cube road5 = CreateFloor(25, 15, 37.5f, 77.5f, 0, -38.75f, Grey);
+	Cube road6 = CreateFloor(150, 15, 20, 140, 0, -67.5f, Grey);
+	Cube road7 = CreateFloor(20, 15, 37.5f, 205, 0, -96.25f, Grey);
+	Cube road8 = CreateFloor(112.5f, 15, 20, 158.75f, 0, -125, Grey);
+	Cube road9 = CreateFloor(75, 15, 7.5f, 65, 0, -117.5f, Grey);
+	Cube road10 = CreateFloor(75, 15, 7.5f, 65, 0, -132.5f, Grey);
+	Cube road11 = CreateFloor(37.5f, 15, 20, 8.75f, 0, -125, Grey);
+	Cube road12 = CreateFloor(20, 15, 40, 0, 0, -95, Grey);
 
 }
