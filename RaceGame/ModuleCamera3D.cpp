@@ -5,6 +5,8 @@
 #include "ModuleCamera3D.h"
 #include "ModulePlayer.h"
 
+#define CAMERA_SPEED 10
+
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	CalculateViewMatrix();
@@ -48,7 +50,11 @@ update_status ModuleCamera3D::Update(float dt)
 	// Implement a debug camera with keys and mouse
 	// Now we can make this movememnt frame rate independant!
 
-	/*vec3 newPos(0,0,0);
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+		debug = !debug;
+
+	if(debug){
+	vec3 newPos(0,0,0);
 	float speed = CAMERA_SPEED * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 	speed = 8.0f * dt;
@@ -102,7 +108,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 	Position = Reference + Z * length(Position);
 	}
-
+	/*
 	vec3 newLookingPoint;
 	newLookingPoint.x = App->player->getPos().x();
 	newLookingPoint.y = App->player->getPos().y();
@@ -122,16 +128,17 @@ update_status ModuleCamera3D::Update(float dt)
 	newPosition.z += App->player->getAxisZ().z * offset_to_player.z;
 
 	Look(newPosition, newLookingPoint, true);*/
-	
-	Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 10* App->player->vehicle->vehicle->getForwardVector().getX();
-	Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() +5* App->player->vehicle->vehicle->getUpAxis();
-	Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 15*App->player->vehicle->vehicle->getForwardVector().getZ();
-	
-	float player_x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() +15 * App->player->vehicle->vehicle->getForwardVector().getX();
-	float player_z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15 * App->player->vehicle->vehicle->getForwardVector().getZ();
-	
-	LookAt(vec3(player_x, 1, player_z));
+	}
+	if (!debug){
+		Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 10 * App->player->vehicle->vehicle->getForwardVector().getX();
+	Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 5 * App->player->vehicle->vehicle->getUpAxis();
+	Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 15 * App->player->vehicle->vehicle->getForwardVector().getZ();
 
+	float player_x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 15 * App->player->vehicle->vehicle->getForwardVector().getX();
+	float player_z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15 * App->player->vehicle->vehicle->getForwardVector().getZ();
+
+	LookAt(vec3(player_x, 1, player_z));
+}
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
 

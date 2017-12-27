@@ -23,7 +23,7 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	Cube CreateFloor(float width, float height, float large, float x, float y, float z, Color color);
-	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree, Color color);
+	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color);
 	void StartTerrain();
 
 public:

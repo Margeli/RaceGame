@@ -21,6 +21,7 @@ public:
 private:
 
 	void CalculateViewMatrix();
+	bool debug = false;
 
 public:
 	
