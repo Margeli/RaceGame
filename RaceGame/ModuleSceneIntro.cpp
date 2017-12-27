@@ -41,6 +41,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	dark_floor.Render();
 	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
 	{
 		item->data.Render();
@@ -67,17 +68,18 @@ Cube ModuleSceneIntro::CreateFloor(float width, float height, float large, float
 
 void ModuleSceneIntro::StartTerrain()
 {
-	Cube road1 = CreateFloor(20, 15, 150, 0, 0, 0, Grey);
-	Cube road2 = CreateFloor(150, 15, 20, 65, 0, 85, Grey);
-	Cube road3 = CreateFloor(25, 15, 75, 127.5f, 0, 37.5f, Grey);
-	Cube road4 = CreateFloor(75, 15, 20, 102.5f, 0, -10, Grey);
-	Cube road5 = CreateFloor(25, 15, 37.5f, 77.5f, 0, -38.75f, Grey);
-	Cube road6 = CreateFloor(150, 15, 20, 140, 0, -67.5f, Grey);
-	Cube road7 = CreateFloor(20, 15, 37.5f, 205, 0, -96.25f, Grey);
-	Cube road8 = CreateFloor(112.5f, 15, 20, 158.75f, 0, -125, Grey);
-	Cube road9 = CreateFloor(75, 15, 7.5f, 65, 0, -117.5f, Grey);
-	Cube road10 = CreateFloor(75, 15, 7.5f, 65, 0, -132.5f, Grey);
-	Cube road11 = CreateFloor(37.5f, 15, 20, 8.75f, 0, -125, Grey);
-	Cube road12 = CreateFloor(20, 15, 40, 0, 0, -95, Grey);
+	Cube road1 = CreateFloor(20, ROAD_HEIGHT, 150, 0, 10, 0, ROAD_COLOR);
+	Cube road2 = CreateFloor(150, ROAD_HEIGHT, 20, 65, 10, 85, ROAD_COLOR);
+	Cube road3 = CreateFloor(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, ROAD_COLOR);
+	Cube road4 = CreateFloor(75, ROAD_HEIGHT, 20, 102.5f, 10, -10, ROAD_COLOR);
+	Cube road5 = CreateFloor(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f, ROAD_COLOR);
+	Cube road6 = CreateFloor(150, ROAD_HEIGHT, 20, 140, 10, -67.5f, ROAD_COLOR);
+	Cube road7 = CreateFloor(20, ROAD_HEIGHT, 37.5f, 205, 10, -96.25f, ROAD_COLOR);
+	Cube road8 = CreateFloor(112.5f, ROAD_HEIGHT, 20, 158.75f, 10, -125, ROAD_COLOR);
+	Cube road9 = CreateFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -117.5f, ROAD_COLOR);
+	Cube road10 = CreateFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f, ROAD_COLOR);
+	Cube road11 = CreateFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125, ROAD_COLOR);
+	Cube road12 = CreateFloor(20, ROAD_HEIGHT, 40, 0, 10, -95, ROAD_COLOR);
 
+	dark_floor = Cube(1000, 1, 1000); dark_floor.color = Black; dark_floor.SetPos(0, 7.5f, 0); 
 }

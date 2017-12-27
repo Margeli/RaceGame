@@ -5,6 +5,8 @@
 #include "Primitive.h"
 
 #define MAX_SNAKE 2
+#define ROAD_COLOR Grey
+#define ROAD_HEIGHT 0.1f
 
 struct PhysBody3D;
 struct PhysMotor3D;
@@ -44,6 +46,7 @@ public:
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
 
+	Cube dark_floor;
 	p2List<Cube> roads;
 	
 };
