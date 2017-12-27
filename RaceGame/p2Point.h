@@ -17,16 +17,30 @@ public:
 	p2Point()
 	{}
 
-	p2Point(const p2Point& p)
+	p2Point(const p2Point<TYPE>& v)
 	{
-		x = p.x;
-		y = p.y;
+		this->x = v.x;
+		this->y = v.y;
+	}
+
+	p2Point(const TYPE& x, const TYPE& y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+
+	p2Point& create(const TYPE& x, const TYPE& y)
+	{
+		this->x = x;
+		this->y = y;
+
+		return(*this);
 	}
 
 	// Math ------------------------------------------------
 	p2Point operator -(const p2Point &v) const
 	{
-		p2Vector2 r;
+		p2Point r;
 
 		r.x = x - v.x;
 		r.y = y - v.y;
@@ -36,7 +50,7 @@ public:
 
 	p2Point operator + (const p2Point &v) const
 	{
-		p2Vector2 r;
+		p2Point r;
 
 		r.x = x + v.x;
 		r.y = y + v.y;
@@ -96,8 +110,24 @@ public:
 		TYPE fx = x - v.x;
 		TYPE fy = y - v.y;
 
-		return (TYPE) sqrt((float) (fx*fx) + (fy*fy));
+		return sqrtf((fx*fx) + (fy*fy));
+	}
+
+	TYPE DistanceNoSqrt(const p2Point& v) const
+	{
+		TYPE fx = x - v.x;
+		TYPE fy = y - v.y;
+
+		return (fx*fx) + (fy*fy);
+	}
+
+	TYPE DistanceManhattan(const p2Point& v) const
+	{
+		return abs(v.x - x) + abs(v.y - y);
 	}
 };
+
+typedef p2Point<int> iPoint;
+typedef p2Point<float> fPoint;
 
 #endif // __P2POINT_H__
