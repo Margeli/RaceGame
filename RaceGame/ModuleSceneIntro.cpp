@@ -30,7 +30,7 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
-
+	
 	return true;
 }
 
@@ -66,6 +66,19 @@ Cube ModuleSceneIntro::CreateFloor(float width, float height, float large, float
 	return ret;
 }
 
+Cube ModuleSceneIntro::CreateRamp(float width, float height, float large, float x, float y, float z, float degree, Color color) {
+	Cube ret(width, height, large);
+	ret.SetPos(x, y, z);
+	ret.color = color;
+	ret.SetRotation(degree, {1,0,0});
+
+	roads.add(ret);
+
+	App->physics->AddBody(ret, 0);
+	return ret;
+
+}
+
 void ModuleSceneIntro::StartTerrain()
 {
 	Cube road1 = CreateFloor(20, ROAD_HEIGHT, 150, 0, 10, 0, ROAD_COLOR);
@@ -80,6 +93,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road10 = CreateFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f, ROAD_COLOR);
 	Cube road11 = CreateFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125, ROAD_COLOR);
 	Cube road12 = CreateFloor(20, ROAD_HEIGHT, 40, 0, 10, -95, ROAD_COLOR);
+	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,7, ROAD_COLOR);
 
 	dark_floor = Cube(1000, 1, 1000); dark_floor.color = Black; dark_floor.SetPos(0, 7.5f, 0); 
 }
