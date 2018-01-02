@@ -4,6 +4,7 @@
 #include "Primitive.h"
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
+#include "ModuleAudio.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
@@ -99,6 +100,10 @@ bool ModulePlayer::Start()
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 20, 10);
 	
+	moving_backwards_fx = App->audio->LoadFx("audio/moving_backwards.wav");
+	brakes_fx = App->audio->LoadFx("audio/brakes.wav");
+	accelerating_fx = App->audio->LoadFx("audio/accelerating.wav");
+
 	return true;
 }
 
@@ -123,6 +128,7 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
+		App->audio->PlayFx(accelerating_fx);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -140,10 +146,12 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		acceleration -= MAX_ACCELERATION / 2;
+		App->audio->PlayFx(moving_backwards_fx);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
+		App->audio->PlayFx(brakes_fx);
 		brake = BRAKE_POWER;
 	}
 

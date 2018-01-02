@@ -25,6 +25,10 @@ public:
 
 public:
 
+	uint brakes_fx;
+	uint moving_backwards_fx;
+	uint accelerating_fx;
+
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
