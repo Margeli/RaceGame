@@ -29,5 +29,7 @@ extern Color Red;
 extern Color Green;
 extern Color Blue;
 extern Color Grey;
+extern Color Yellow;
+extern Color Orange;
 extern Color Black;
 extern Color White;
