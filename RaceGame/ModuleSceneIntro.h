@@ -28,6 +28,7 @@ public:
 	Cube CreateFloor(float width, float height, float large, float x, float y, float z, Color color = ROAD_COLOR);
 	Cube CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = Orange);
 	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
+	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Black);
 	void StartTerrain();
 
 public:

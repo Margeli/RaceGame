@@ -58,6 +58,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		LOG("Hi");
 	}
+	if (body1->type == Floor)
+	{
+		//when the lower limit is hitted
+	}
 }
 
 Cube ModuleSceneIntro::CreateFloor(float width, float height, float large, float x, float y, float z, Color color)
@@ -99,6 +103,21 @@ Cube ModuleSceneIntro::CreateRamp(float width, float height, float large, float 
 	return ret;
 
 }
+Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color) {
+	Cube ret(width, height, large);
+	ret.SetPos(x, y, z);
+	ret.color = color;
+	
+
+	roads.add(ret);
+
+	PhysBody3D* pbody = App->physics->AddBody(ret, 0, SceneObjectType::Floor);
+	pbody->SetSensor();
+	pbody->collision_listeners.add(this);
+
+	return ret;
+
+}
 
 void ModuleSceneIntro::StartTerrain()
 {
@@ -118,5 +137,6 @@ void ModuleSceneIntro::StartTerrain()
 
 	Cube turbo1 = CreateTurboPart(10, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 
-	dark_floor = Cube(1000, 1, 1000); dark_floor.color = Black; dark_floor.SetPos(0, 7.5f, 0); 
+	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 7.5f, 0)
+	
 }
