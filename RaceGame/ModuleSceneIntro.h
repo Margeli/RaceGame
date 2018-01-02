@@ -22,9 +22,11 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+
+
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	Cube CreateFloor(float width, float height, float large, float x, float y, float z, Color color = ROAD_COLOR);
-	Cube CreatTurboPart(float width, float height, float large, float x, float y, float z, Color color = Orange);
+	Cube CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = Orange);
 	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
 	void StartTerrain();
 

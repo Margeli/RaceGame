@@ -54,10 +54,10 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-	/*if (body1 == "turbo")
+	if (body1->type == Turbo)
 	{
-
-	}*/
+		LOG("Hi");
+	}
 }
 
 Cube ModuleSceneIntro::CreateFloor(float width, float height, float large, float x, float y, float z, Color color)
@@ -72,7 +72,7 @@ Cube ModuleSceneIntro::CreateFloor(float width, float height, float large, float
 	return ret;
 }
 
-Cube ModuleSceneIntro::CreatTurboPart(float width, float height, float large, float x, float y, float z, Color color)
+Cube ModuleSceneIntro::CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color)
 {
 	Cube ret(width, height, large);
 	ret.SetPos(x, y, z);
@@ -80,7 +80,10 @@ Cube ModuleSceneIntro::CreatTurboPart(float width, float height, float large, fl
 
 	roads.add(ret);
 
-	App->physics->AddBody(ret, 0);
+	PhysBody3D* pbody = App->physics->AddBody(ret, 0, SceneObjectType::Turbo);
+	pbody->SetSensor();
+	pbody->collision_listeners.add(this);
+
 	return ret;
 }
 
@@ -112,6 +115,8 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road11 = CreateFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125);
 	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.5f, 0, 16.5f, -94,19.3, { -1,0,0 }, ROAD_COLOR);
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,7, { 1,0,0 });//Mini ramp to jump
+
+	Cube turbo1 = CreateTurboPart(10, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 
 	dark_floor = Cube(1000, 1, 1000); dark_floor.color = Black; dark_floor.SetPos(0, 7.5f, 0); 
 }

@@ -7,6 +7,13 @@ class btRigidBody;
 class Module;
 class btVector3;
 
+enum SceneObjectType {
+	None =0,
+	Turbo,
+	Floor, 
+	Ramp
+};
+
 // =================================================
 struct PhysBody3D
 {
@@ -19,6 +26,7 @@ public:
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
+	void SetSensor()const;
 	btVector3 GetPos() const;
 
 private:
@@ -26,6 +34,7 @@ private:
 
 public:
 	p2List<Module*> collision_listeners;
+	SceneObjectType type = None;
 };
 
 #endif // __PhysBody3D_H__
