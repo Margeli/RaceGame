@@ -20,6 +20,8 @@ public:
 	bool CleanUp();
 	btVector3 getPos() const;//Get axis of orientation of the player
 
+	bool turbo = false;
+
 	
 	void InitialPos() const;//car spawns to the initial pos
 	void RespawnCar() const;  

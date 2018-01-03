@@ -41,7 +41,7 @@ void PhysBody3D::SetTransform(const float* matrix) const
 }
 
 // ---------------------------------------------------------
-void PhysBody3D::SetPos(float x, float y, float z)
+void PhysBody3D::SetPos(float x, float y, float z) const
 {
 	btTransform t = body->getWorldTransform();
 	t.setOrigin(btVector3(x, y, z));

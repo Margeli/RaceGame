@@ -26,7 +26,7 @@ public:
 	void Push(float x, float y, float z);
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
-	void SetPos(float x, float y, float z);	
+	void SetPos(float x, float y, float z)const;	
 	btVector3 GetPos() const;
 	void SetRotation(btQuaternion rotation) const;
 	btQuaternion GetRotation() const;

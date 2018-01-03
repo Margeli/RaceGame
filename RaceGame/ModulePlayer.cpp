@@ -154,7 +154,12 @@ update_status ModulePlayer::Update(float dt)
 		App->audio->PlayFx(brakes_fx);
 		brake = BRAKE_POWER;
 	}
-
+	if (turbo) {
+		acceleration +=10000;
+		
+		turbo = false;
+	
+	}
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);

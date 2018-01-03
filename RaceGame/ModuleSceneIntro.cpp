@@ -56,9 +56,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	if (body1->type == Turbo)
 	{
-		LOG("Hi");
+		//audio for turbo
+		App->player->turbo = true;
 	}
-	if (body1->type == Floor)
+	else if (body1->type == Floor)
 	{
 		App->player->RespawnCar();		
 	}
