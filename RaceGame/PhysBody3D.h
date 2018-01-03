@@ -6,6 +6,7 @@
 class btRigidBody;
 class Module;
 class btVector3;
+class btQuaternion;
 
 enum SceneObjectType {
 	None =0,
@@ -25,10 +26,11 @@ public:
 	void Push(float x, float y, float z);
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
-	void SetPos(float x, float y, float z);
-	void SetSensor()const;
+	void SetPos(float x, float y, float z);	
 	btVector3 GetPos() const;
-
+	void SetRotation(btQuaternion rotation) const;
+	btQuaternion GetRotation() const;
+	void SetSensor()const;
 private:
 	btRigidBody* body = nullptr;
 

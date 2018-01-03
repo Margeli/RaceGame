@@ -19,9 +19,10 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 	btVector3 getPos() const;//Get axis of orientation of the player
-	vec3 getAxisX() const;
-	vec3 getAxisY() const;
-	vec3 getAxisZ() const;
+
+	
+	void InitialPos() const;//car spawns to the initial pos
+	void ResetCar() const;  
 
 public:
 

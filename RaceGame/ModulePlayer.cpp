@@ -168,5 +168,16 @@ update_status ModulePlayer::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
+void ModulePlayer::InitialPos() const {
+
+	vehicle->SetPos(0, 20, 10);
+}
 
 
+
+void ModulePlayer::ResetCar() const {
+	InitialPos();
+	vehicle->SetRotation({0,0,0 ,1 });
+	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+}

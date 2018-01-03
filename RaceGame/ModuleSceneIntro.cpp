@@ -60,7 +60,9 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	if (body1->type == Floor)
 	{
-		//when the lower limit is hitted
+		
+		App->player->ResetCar();
+		LOG("Hi");//when the lower limit is hitted
 	}
 }
 
@@ -137,6 +139,6 @@ void ModuleSceneIntro::StartTerrain()
 
 	Cube turbo1 = CreateTurboPart(10, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 
-	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 7.5f, 0)
+	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 7.5f, 0);
 	
 }
