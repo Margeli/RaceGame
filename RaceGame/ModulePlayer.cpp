@@ -175,7 +175,7 @@ void ModulePlayer::InitialPos() const {
 
 
 
-void ModulePlayer::ResetCar() const {
+void ModulePlayer::RespawnCar() const {
 	InitialPos();
 	vehicle->SetRotation({0,0,0 ,1 });
 	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });

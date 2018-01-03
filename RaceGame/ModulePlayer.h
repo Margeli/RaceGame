@@ -22,7 +22,7 @@ public:
 
 	
 	void InitialPos() const;//car spawns to the initial pos
-	void ResetCar() const;  
+	void RespawnCar() const;  
 
 public:
 

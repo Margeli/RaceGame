@@ -60,9 +60,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	if (body1->type == Floor)
 	{
-		
-		App->player->ResetCar();
-		LOG("Hi");//when the lower limit is hitted
+		App->player->RespawnCar();		
 	}
 }
 
@@ -123,7 +121,7 @@ Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, 
 
 void ModuleSceneIntro::StartTerrain()
 {
-	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 150, 0, 16.5f, 0.4f, 5, {1,0,0}, ROAD_COLOR);
+	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 150, 0, 15.30f, 0.4f, 4.1f, {1,0,0}, ROAD_COLOR);
 	Cube road2 = CreateFloor(150, ROAD_HEIGHT, 20, 65, 10, 85);
 	Cube road3 = CreateFloor(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f);
 	Cube road4 = CreateFloor(75, ROAD_HEIGHT, 20, 102.5f, 10, -10);
@@ -134,11 +132,11 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road9 = CreateFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -117.5f);
 	Cube road10 = CreateFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f);
 	Cube road11 = CreateFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125);
-	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.5f, 0, 16.5f, -94,19.3, { -1,0,0 }, ROAD_COLOR);
+	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 15.3f, -94.8f ,14.6f, { -1,0,0 }, ROAD_COLOR);
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,7, { 1,0,0 });//Mini ramp to jump
 
 	Cube turbo1 = CreateTurboPart(10, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 
-	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 7.5f, 0);
+	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);
 	
 }
