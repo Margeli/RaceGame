@@ -87,13 +87,44 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 
 	if (wallLeft)
 	{
-		Cube LeftWall(1, 3, 1);
+		if (width > large)
+		{
+			Cube LeftWall(width, 3, 1);
+			LeftWall.SetPos(x, y, (z -  large / 2 - 1) );
+			LeftWall.color = color;
+			roads.add(LeftWall);
+			App->physics->AddBody(LeftWall, 0);
+		}
 
+		else if (width < large)
+		{
+			Cube LeftWall(1, 3, large);
+			LeftWall.SetPos((x - width / 2 - 1), y, z);
+			LeftWall.color = color;
+			roads.add(LeftWall);
+			App->physics->AddBody(LeftWall, 0);
+		}
 	}
 
 	if (wallRight)
 	{
-		Cube RightWall(1, 3, 1);
+		if (width > large)
+		{
+			Cube RightWall(width, 3, 1);
+			RightWall.SetPos(x, y, (z + large / 2 + 1));
+			RightWall.color = color;
+			roads.add(RightWall);
+			App->physics->AddBody(RightWall, 0);
+		}
+
+		else if (width < large)
+		{
+			Cube RightWall(1, 3, large);
+			RightWall.SetPos((x + width / 2 + 1), y, z);
+			RightWall.color = color;
+			roads.add(RightWall);
+			App->physics->AddBody(RightWall, 0);
+		}
 
 	}
 
@@ -147,8 +178,8 @@ Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, 
 void ModuleSceneIntro::StartTerrain()
 {
 	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 150, 0, 15.30f, 0.4f, 4.1f, {1,0,0}, ROAD_COLOR);
-	Cube road2 = CreateNormalFloor(150, ROAD_HEIGHT, 20, 65, 10, 85);
-	Cube road3 = CreateNormalFloor(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f);
+	Cube road2 = CreateFloorAndWalls(150, ROAD_HEIGHT, 20, 65, 10, 85, false, true);
+	Cube road3 = CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);
 	Cube road4 = CreateNormalFloor(75, ROAD_HEIGHT, 20, 102.5f, 10, -10);
 	Cube road5 = CreateNormalFloor(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f);
 	Cube road6 = CreateNormalFloor(150, ROAD_HEIGHT, 20, 140, 10, -67.5f);
