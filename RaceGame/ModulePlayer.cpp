@@ -100,7 +100,7 @@ bool ModulePlayer::Start()
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 20, 10);
 	
-	moving_backwards_fx = App->audio->LoadFx("audio/moving_backwards.wav");
+	//moving_backwards_fx = App->audio->LoadFx("audio/moving_backwards.wav");
 	brakes_fx = App->audio->LoadFx("audio/brakes.wav");
 	accelerating_fx = App->audio->LoadFx("audio/accelerating.wav");
 
@@ -146,7 +146,7 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		acceleration -= MAX_ACCELERATION / 2;
-		App->audio->PlayFx(moving_backwards_fx);
+		//App->audio->PlayFx(moving_backwards_fx);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
