@@ -8,6 +8,7 @@
 #define ROAD_COLOR Grey
 #define RAMP_COLOR Yellow
 #define ROAD_HEIGHT 0.1f
+#define LAPS 3
 
 struct PhysBody3D;
 struct PhysMotor3D;

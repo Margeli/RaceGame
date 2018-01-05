@@ -6,6 +6,7 @@
 #include "PhysBody3D.h"
 #include "ModuleAudio.h"
 
+
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
@@ -104,6 +105,8 @@ bool ModulePlayer::Start()
 	brakes_fx = App->audio->LoadFx("audio/brakes.wav");
 	accelerating_fx = App->audio->LoadFx("audio/accelerating.wav");
 
+	timer.Start();
+
 	return true;
 }
 
@@ -155,7 +158,7 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 	}
 	if (turbo) {
-		acceleration +=10000;
+		acceleration += TURBO_ACCELERATION;
 		
 		turbo = false;
 	
@@ -167,7 +170,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "%i/%i LAPS    %.1f Km/h    %.1f sec", current_laps, LAPS, vehicle->GetKmh(), timer.ReadSec());
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
@@ -185,4 +188,5 @@ void ModulePlayer::RespawnCar() const {
 	vehicle->SetRotation({0,0,0 ,1 });
 	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
 	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+	timer.Start();
 }

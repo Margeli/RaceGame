@@ -2,12 +2,16 @@
 #include "Module.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "Timer.h"
 
 struct PhysVehicle3D;
 
 #define MAX_ACCELERATION 1000.0f
+#define TURBO_ACCELERATION 8000.0f
 #define TURN_DEGREES 15.0f * DEGTORAD
 #define BRAKE_POWER 550.0f
+
+
 
 class ModulePlayer : public Module
 {
@@ -21,11 +25,12 @@ public:
 	btVector3 getPos() const;//Get axis of orientation of the player
 
 	bool turbo = false;
-
 	
 	void InitialPos() const;//car spawns to the initial pos
 	void RespawnCar() const;  
 
+	mutable Timer timer;
+	uint current_laps=1;
 public:
 
 	uint brakes_fx;
