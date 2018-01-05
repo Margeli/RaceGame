@@ -154,8 +154,13 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
-		App->audio->PlayFx(brakes_fx);
-		brake = BRAKE_POWER;
+		if (vehicle->GetKmh() > 7.5f)
+		{
+			App->audio->PlayFx(brakes_fx);
+			brake = BRAKE_POWER;
+		}
+		else
+			brake = BRAKE_POWER;
 	}
 	if (turbo) {
 		acceleration += TURBO_ACCELERATION;
