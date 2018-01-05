@@ -42,7 +42,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
-
+	
 	dark_floor.Render();
 	for (p2List_item<Cube>* item = roads.getFirst(); item; item = item->next)
 	{
@@ -90,7 +90,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		if (width > large)
 		{
 			Cube LeftWall(width, 3, 1);
-			LeftWall.SetPos(x, y, (z -  large / 2 - 1) );
+			LeftWall.SetPos(x, y, (z -  large / 2) );
 			LeftWall.color = color;
 			roads.add(LeftWall);
 			App->physics->AddBody(LeftWall, 0);
@@ -99,7 +99,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		else if (width < large)
 		{
 			Cube LeftWall(1, 3, large);
-			LeftWall.SetPos((x - width / 2 - 1), y, z);
+			LeftWall.SetPos((x - width / 2), y, z);
 			LeftWall.color = color;
 			roads.add(LeftWall);
 			App->physics->AddBody(LeftWall, 0);
@@ -111,7 +111,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		if (width > large)
 		{
 			Cube RightWall(width, 3, 1);
-			RightWall.SetPos(x, y, (z + large / 2 + 1));
+			RightWall.SetPos(x, y, (z + large / 2));
 			RightWall.color = color;
 			roads.add(RightWall);
 			App->physics->AddBody(RightWall, 0);
@@ -120,7 +120,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		else if (width < large)
 		{
 			Cube RightWall(1, 3, large);
-			RightWall.SetPos((x + width / 2 + 1), y, z);
+			RightWall.SetPos((x + width / 2), y, z);
 			RightWall.color = color;
 			roads.add(RightWall);
 			App->physics->AddBody(RightWall, 0);
