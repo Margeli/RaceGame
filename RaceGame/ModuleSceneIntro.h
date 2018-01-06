@@ -40,11 +40,11 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	Cube CreateNormalFloor(float width, float height, float large, float x, float y, float z, Color color = ROAD_COLOR);
-	Cube CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft = false, bool wallRight = false, bool wallTop = false, bool wallBack = false, Color color = ROAD_COLOR);
-	Cube CreateEndFloor(float width, float height, float large, float x, float y, float z);
+	void CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft = false, bool wallRight = false, bool wallTop = false, bool wallBack = false, Color color = ROAD_COLOR);
+	void CreateEndFloor(float width, float height, float large, float x, float y, float z);
 	Cube CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = Orange);
 	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
-	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Black);
+	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Cyan);
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
 	void CreateBlades(float x, float y, float z, vec3 axis);
 	void StartTerrain();

@@ -99,7 +99,7 @@ Cube ModuleSceneIntro::CreateNormalFloor(float width, float height, float large,
 	return ret;
 }
 
-Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft, bool wallRight, bool wallTop, bool wallBack, Color color)
+void ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft, bool wallRight, bool wallTop, bool wallBack, Color color)
 {
 	Cube ret(width, height, large);
 	ret.SetPos(x, y, z);
@@ -192,10 +192,9 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		}
 	}
 	App->physics->AddBody(ret, 0);
-	return ret;
 }
 
-Cube ModuleSceneIntro::CreateEndFloor(float width, float height, float large, float x, float y, float z)
+void ModuleSceneIntro::CreateEndFloor(float width, float height, float large, float x, float y, float z)
 {
 	if(width < large)
 		for (int i = 1; i < 6; i++)
@@ -320,14 +319,14 @@ void ModuleSceneIntro::CreateBlades(float x, float y, float z, vec3 axis) {
 void ModuleSceneIntro::StartTerrain()
 {
 	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 149.6f, 0, 13.20f, 0.4f, 2.5f, {1,0,0}, ROAD_COLOR);
-	Cube road2_1 = CreateFloorAndWalls(130, ROAD_HEIGHT, 20, 75, 10, 85, false, true, true);
-	Cube road2_2 = CreateFloorAndWalls(19, ROAD_HEIGHT, 20, -7.5f, 10, 85, false);
-	Cube road3 = CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);
-	Cube road4 = CreateFloorAndWalls(75, ROAD_HEIGHT, 20, 102.5f, 10, -10, false, false, false, true);
-	Cube road5 = CreateFloorAndWalls(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f, true);
-	Cube road6 = CreateFloorAndWalls(130, ROAD_HEIGHT, 20, 130, 10, -67.5f, true, false, false, true);
-	Cube road7 = CreateFloorAndWalls(20, ROAD_HEIGHT, 57.5f, 205, 10, -86.25f, false, true);
-	Cube road8 = CreateFloorAndWalls(112.5f, ROAD_HEIGHT, 20, 158.75f, 10, -125, false, false, true, false);
+	CreateFloorAndWalls(130, ROAD_HEIGHT, 20, 75, 10, 85, false, true, true);
+	CreateFloorAndWalls(19, ROAD_HEIGHT, 20, -7.5f, 10, 85, false);
+	CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);
+	CreateFloorAndWalls(75, ROAD_HEIGHT, 20, 102.5f, 10, -10, false, false, false, true);
+	CreateFloorAndWalls(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f, true);
+	CreateFloorAndWalls(130, ROAD_HEIGHT, 20, 130, 10, -67.5f, true, false, false, true);
+	CreateFloorAndWalls(20, ROAD_HEIGHT, 57.5f, 205, 10, -86.25f, false, true);
+	CreateFloorAndWalls(112.5f, ROAD_HEIGHT, 20, 158.75f, 10, -125, false, false, true, false);
 	Cube road9 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -117.5f);
 	Cube road10 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f);
 	Cube road11 = CreateNormalFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125);
@@ -335,7 +334,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,5, { 1,0,0 });//Mini ramp to jump
 	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump
 
-	Cube end_flag = CreateEndFloor(5, ROAD_HEIGHT, 20, 10, 10, 85);
+	CreateEndFloor(5, ROAD_HEIGHT, 20, 10, 10, 85);
 
 	Cube turbo1 = CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 	Cube turbo2 = CreateTurboPart(5, ROAD_HEIGHT, 20, 155, 10.2f, -125);
