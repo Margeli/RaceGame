@@ -221,4 +221,5 @@ void ModulePlayer::LapCompleted() {
 void ModulePlayer::Win() {
 	input = false;
 	App->camera->free_camera = true;
+	timer.Stop();
 }
