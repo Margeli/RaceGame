@@ -49,87 +49,8 @@ update_status ModuleCamera3D::Update(float dt)
 {
 	// Implement a debug camera with keys and mouse
 	// Now we can make this movememnt frame rate independant!
-	if (!free_camera) {
-		if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
-			debug = !debug;
-
-		if (debug) {
-			vec3 newPos(0, 0, 0);
-			float speed = CAMERA_SPEED * dt;
-			if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-				speed = 8.0f * dt;
-
-			if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed;
-			if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed;
-
-			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= Z * speed;
-			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += Z * speed;
-
-
-			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= X * speed;
-			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += X * speed;
-
-			Position += newPos;
-			Reference += newPos;
-
-			// Mouse motion ----------------
-
-			if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
-			{
-				int dx = -App->input->GetMouseXMotion();
-				int dy = -App->input->GetMouseYMotion();
-
-				float Sensitivity = 0.25f;
-
-				Position -= Reference;
-
-				if (dx != 0)
-				{
-					float DeltaX = (float)dx * Sensitivity;
-
-					X = rotate(X, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-					Y = rotate(Y, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-					Z = rotate(Z, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-				}
-
-				if (dy != 0)
-				{
-					float DeltaY = (float)dy * Sensitivity;
-
-					Y = rotate(Y, DeltaY, X);
-					Z = rotate(Z, DeltaY, X);
-
-					if (Y.y < 0.0f)
-					{
-						Z = vec3(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-						Y = cross(Z, X);
-					}
-				}
-
-				Position = Reference + Z * length(Position);
-			}
-			/*
-			vec3 newLookingPoint;
-			newLookingPoint.x = App->player->getPos().x();
-			newLookingPoint.y = App->player->getPos().y();
-			newLookingPoint.z = App->player->getPos().z();
-
-			vec3 newPosition;
-			newPosition.x = App->player->getPos().x();
-			newPosition.y = App->player->getPos().y();
-			newPosition.z = App->player->getPos().z();
-
-			newPosition.x += App->player->getAxisX().x * offset_to_player.x;
-			newPosition.z += App->player->getAxisX().z * offset_to_player.x;
-
-			newPosition.y = offset_to_player.y;
-
-			newPosition.x += App->player->getAxisZ().x * offset_to_player.z;
-			newPosition.z += App->player->getAxisZ().z * offset_to_player.z;
-
-			Look(newPosition, newLookingPoint, true);*/
-		}
-		if (!debug) {
+	if (!free_camera) {		
+		
 			Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 10 * App->player->vehicle->vehicle->getForwardVector().getX();
 			Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 5 * App->player->vehicle->vehicle->getUpAxis();
 			Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 15 * App->player->vehicle->vehicle->getForwardVector().getZ();
@@ -138,7 +59,7 @@ update_status ModuleCamera3D::Update(float dt)
 			float player_z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15 * App->player->vehicle->vehicle->getForwardVector().getZ();
 
 			LookAt(vec3(player_x, 1, player_z));
-		}
+		
 	}
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
