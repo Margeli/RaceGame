@@ -277,7 +277,7 @@ Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, 
 
 Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 
-	Cube ret(20, 20, 0.3f);
+	Cube ret(0.3f, 20,20);
 	ret.SetPos(x, y, z);
 
 	SceneObjectType type;
@@ -342,8 +342,8 @@ void ModuleSceneIntro::StartTerrain()
 	Cube turbo1 = CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 	Cube turbo2 = CreateTurboPart(5, ROAD_HEIGHT, 20, 155, 10.2f, -125);
 
-	Cube sensor1 = CreateLapSensor( 127.5f, 10, 37.5f);
-	Cube goal = CreateLapSensor(0, 20, 0, true);
+	Cube sensor1 = CreateLapSensor( 155, 10, -120.5f);
+	Cube goal = CreateLapSensor(12.5f, 20, 85, true);
 
 	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);	
 	CreateBlades(75,23,-45);

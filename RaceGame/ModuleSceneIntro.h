@@ -50,9 +50,6 @@ public:
 	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = LIMIT_COLOR);
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
 	void CreateBlades(float x, float y, float z, Color color = BLADE_COLOR);
-	void StartTerrain();
-
-
 
 public:
 	PhysBody3D* pb_chassis;
