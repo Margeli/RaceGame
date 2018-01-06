@@ -205,7 +205,23 @@ void ModuleSceneIntro::CreateEndFloor(float width, float height, float large, fl
 				ret.color = White;
 			else
 				ret.color = Black;
-
+			if (wallLeft)
+			{
+				Cube LeftWall(width, 3, 1);
+				LeftWall.SetPos(x, y + 1.5f, (z - large / 2));
+				LeftWall.color = ROAD_COLOR;
+				roads.add(LeftWall);
+				App->physics->AddBody(LeftWall, 0);
+			}
+			if (wallRight)
+			{
+				Cube RightWall(width, 3, 1);
+				RightWall.SetPos(x, y + 1.5f, (z + large / 2));
+				RightWall.color = ROAD_COLOR;
+				roads.add(RightWall);
+				App->physics->AddBody(RightWall, 0);
+			}
+			
 			roads.add(ret);
 			App->physics->AddBody(ret, 0);
 			
@@ -220,7 +236,22 @@ void ModuleSceneIntro::CreateEndFloor(float width, float height, float large, fl
 				ret.color = White;
 			else
 				ret.color = Black;
-
+			if (wallLeft)
+			{
+				Cube LeftWall(1, 3, large);
+				LeftWall.SetPos((x - width / 2), y + 1.5f, z);
+				LeftWall.color = ROAD_COLOR;
+				roads.add(LeftWall);
+				App->physics->AddBody(LeftWall, 0);
+			}
+			if (wallRight)
+			{
+				Cube RightWall(1, 3, large);
+				RightWall.SetPos((x + width / 2), y + 1.5f, z);
+				RightWall.color = ROAD_COLOR;
+				roads.add(RightWall);
+				App->physics->AddBody(RightWall, 0);
+			}
 			roads.add(ret);
 			App->physics->AddBody(ret, 0);
 			
@@ -332,7 +363,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road11 = CreateNormalFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125);//12
 	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 13.2f, -94.8f ,9, { -1,0,0 }, ROAD_COLOR);//13
 
-	CreateEndFloor(5, ROAD_HEIGHT, 20, 12.5f, 10, 85);
+	CreateEndFloor(5, ROAD_HEIGHT, 20, 12.5f, 10, 85, false, true);
 
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,5, { 1,0,0 });//Mini ramp to jump
 	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump
