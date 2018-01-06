@@ -29,12 +29,12 @@ public:
 	void InitialPos() const;//car spawns to the initial pos
 	void RespawnCar() ;
 	void LapCompleted();
+	void Win();
 	
 	mutable Timer timer;
 	uint current_laps=1;
 	bool half_lap_done = false;
-
-
+	bool input = true;
 
 public:
 
