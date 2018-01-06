@@ -366,9 +366,7 @@ void ModuleSceneIntro::StartTerrain()
 	CreateEndFloor(5, ROAD_HEIGHT, 20, 12.5f, 10, 85, false, true);
 
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,5, { 1,0,0 });//Mini ramp to jump
-	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump
-
-	
+	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump	
 
 	Cube turbo1 = CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 	Cube turbo2 = CreateTurboPart(5, ROAD_HEIGHT, 20, 155, 10.2f, -125);
