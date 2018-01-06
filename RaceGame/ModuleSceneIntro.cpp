@@ -142,17 +142,19 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 
 Cube ModuleSceneIntro::CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color)
 {
-	Cube ret(width, height, large);
-	ret.SetPos(x, y, z);
-	ret.color = color;
+	Cube turbo(width, height, large);
+	turbo.SetPos(x, y, z);
+	turbo.color = color;
 
-	roads.add(ret);
+	roads.add(turbo);
+	Cube turbosensor = turbo;
+	turbosensor.SetPos(x, y + 1.5f, z);
 
-	PhysBody3D* pbody = App->physics->AddBody(ret, 0, SceneObjectType::Turbo);
+	PhysBody3D* pbody = App->physics->AddBody(turbosensor, 0, SceneObjectType::Turbo);
 	pbody->SetSensor();
 	pbody->collision_listeners.add(this);
 
-	return ret;
+	return turbo;
 }
 
 Cube ModuleSceneIntro::CreateRamp(float width, float height, float large, float x, float y, float z, float degree, vec3 axis, Color color) {
@@ -219,7 +221,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 15.3f, -94.8f ,14.6f, { -1,0,0 }, ROAD_COLOR);
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,7, { 1,0,0 });//Mini ramp to jump
 
-	Cube turbo1 = CreateTurboPart(10, ROAD_HEIGHT, 20, 65, 10.2f, 85);
+	Cube turbo1 = CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 
 	Cube sensor1 = CreateLapSensor( 127.5f, 10, 37.5f);
 	Cube goal = CreateLapSensor(0, 20, 0, true);
