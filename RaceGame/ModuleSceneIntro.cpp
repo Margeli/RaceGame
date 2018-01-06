@@ -259,7 +259,7 @@ void ModuleSceneIntro::CreateEndFloor(float width, float height, float large, fl
 
 }
 
-Cube ModuleSceneIntro::CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color)
+void ModuleSceneIntro::CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color)
 {
 	Cube turbo(width, height, large);
 	turbo.SetPos(x, y, z);
@@ -272,11 +272,9 @@ Cube ModuleSceneIntro::CreateTurboPart(float width, float height, float large, f
 	PhysBody3D* pbody = App->physics->AddBody(turbosensor, 0, SceneObjectType::Turbo);
 	pbody->SetSensor();
 	pbody->collision_listeners.add(this);
-
-	return turbo;
 }
 
-Cube ModuleSceneIntro::CreateRamp(float width, float height, float large, float x, float y, float z, float degree, vec3 axis, Color color) {
+void ModuleSceneIntro::CreateRamp(float width, float height, float large, float x, float y, float z, float degree, vec3 axis, Color color) {
 	Cube ret(width, height, large);
 	ret.SetPos(x, y, z);
 	ret.color = color;
@@ -285,11 +283,9 @@ Cube ModuleSceneIntro::CreateRamp(float width, float height, float large, float 
 	roads.add(ret);
 
 	App->physics->AddBody(ret, 0);
-	return ret;
-
 }
 
-Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color) {
+void ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color) {
 	Cube ret(width, height, large);
 	ret.SetPos(x, y, z);
 	ret.color = color;
@@ -300,12 +296,9 @@ Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, 
 	PhysBody3D* pbody = App->physics->AddBody(ret, 0, SceneObjectType::Floor);
 	pbody->SetSensor();
 	pbody->collision_listeners.add(this);
-
-	return ret;
-
 }
 
-Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
+void ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 
 	Cube ret(0.3f, 20,20);
 	ret.SetPos(x, y, z);
@@ -322,8 +315,6 @@ Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 
 	pbody->SetSensor();
 	pbody->collision_listeners.add(this);
-
-	return ret;
 }
 
 void ModuleSceneIntro::CreateBlades(float x, float y, float z, Color color) {
@@ -348,7 +339,7 @@ void ModuleSceneIntro::CreateBlades(float x, float y, float z, Color color) {
 
 void ModuleSceneIntro::StartTerrain()
 {
-	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 149.6f, 0, 13.20f, 0.4f, 2.5f, {1,0,0}, ROAD_COLOR);//1
+	CreateRamp(20, ROAD_HEIGHT, 149.6f, 0, 13.20f, 0.4f, 2.5f, {1,0,0}, ROAD_COLOR);//1
 	CreateFloorAndWalls(125, ROAD_HEIGHT, 20, 77.5f, 10, 85, false, true, true);//2
 	CreateFloorAndWalls(19.99f, ROAD_HEIGHT, 20, 0.0f, 10, 85, true, false, true);//3
 	CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);//4
@@ -360,20 +351,20 @@ void ModuleSceneIntro::StartTerrain()
 	CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -117.5f);//10
 	CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f);//11
 	CreateFloorAndWalls(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125, false, false, false,true);//12
-	Cube road13 = CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 13.2f, -94.8f ,9, { -1,0,0 }, ROAD_COLOR);//13
+	CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 13.2f, -94.8f ,9, { -1,0,0 }, ROAD_COLOR);//13
 
 	CreateEndFloor(5, ROAD_HEIGHT, 20, 12.5f, 10, 85, false, true);
 
-	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,5, { 1,0,0 });//Mini ramp to jump
-	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump	
+	CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,5, { 1,0,0 });//Mini ramp to jump
+	CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump	
 
-	Cube turbo1 = CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
-	Cube turbo2 = CreateTurboPart(5, ROAD_HEIGHT, 20, 155, 10.2f, -125);
+	CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
+	CreateTurboPart(5, ROAD_HEIGHT, 20, 155, 10.2f, -125);
 
-	Cube sensor1 = CreateLapSensor( 155, 10, -120.5f);
-	Cube goal = CreateLapSensor(12.5f, 20, 85, true);
+	CreateLapSensor( 155, 10, -120.5f);
+	CreateLapSensor(12.5f, 20, 85, true);
 
-	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);	
+	CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);	
 	CreateBlades(75,23,-45);
 	CreateBlades(75, 23, -30);
 }
