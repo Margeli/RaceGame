@@ -22,28 +22,32 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-	btVector3 getPos() const;//Get axis of orientation of the player
-
-	bool turbo = false;
+	btVector3 getPos() const;//Get axis of orientation of the player	
 	
 	void InitialPos() const;//car spawns to the initial pos
 	void RespawnCar() ;
 	void LapCompleted();
 	void Win();
-	
-	mutable Timer timer;
-	uint current_laps=1;
-	bool half_lap_done = false;
-	bool input = true;
 
 public:
 
-	uint brakes_fx;
-	//uint moving_backwards_fx; TOO REPETITIVE
-	uint accelerating_fx;
+	uint brakes_fx = 0;
+	uint complete_lap_fx = 0; 
+	uint last_lap_fx = 0;
+	uint win_fx = 0;
+	uint accelerating_fx = 0;
+
+
 
 	PhysVehicle3D* vehicle;
-	float turn;
-	float acceleration;
-	float brake;
+	float turn = 0;
+	float acceleration = 0;
+	float acceleration_fx_Time = 0;
+	float brake = 0;
+	bool turbo = false;
+
+	mutable Timer timer;
+	uint current_laps = 1;
+	bool half_lap_done = false;
+	bool input = true;
 };

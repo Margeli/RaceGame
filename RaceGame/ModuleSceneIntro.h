@@ -8,7 +8,7 @@
 #define ROAD_COLOR Grey
 #define RAMP_COLOR Yellow
 #define ROAD_HEIGHT 0.1f
-#define LAPS 1
+#define LAPS 3
 
 struct PhysBody3D;
 struct PhysMotor3D;
@@ -58,6 +58,6 @@ public:
 	Cube dark_floor;
 	p2List<Cube> roads;
 
-	uint turbo_fx;
+	uint turbo_fx = 0;
 	
 };
