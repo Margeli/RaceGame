@@ -47,6 +47,7 @@ public:
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
 	void CreateBlades(float x, float y, float z, vec3 axis);
 
+
 public:
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
