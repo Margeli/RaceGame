@@ -6,8 +6,12 @@
 
 #define MAX_SNAKE 2
 #define ROAD_COLOR Grey
-#define RAMP_COLOR Yellow
+#define TURBO_COLOR Orange
+#define RAMP_COLOR Green
+#define BLADE_COLOR Red
+#define LIMIT_COLOR Cyan
 #define ROAD_HEIGHT 0.1f
+
 #define LAPS 1
 
 struct PhysBody3D;
@@ -41,11 +45,13 @@ public:
 	Cube CreateNormalFloor(float width, float height, float large, float x, float y, float z, Color color = ROAD_COLOR);
 	void CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft = false, bool wallRight = false, bool wallTop = false, bool wallBack = false, Color color = ROAD_COLOR);
 	void CreateEndFloor(float width, float height, float large, float x, float y, float z, bool wallLeft = false, bool wallRight = false);
-	Cube CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = Orange);
+	Cube CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = TURBO_COLOR);
 	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
-	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Cyan);
+	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = LIMIT_COLOR);
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
-	void CreateBlades(float x, float y, float z);
+	void CreateBlades(float x, float y, float z, Color color = BLADE_COLOR);
+	void StartTerrain();
+
 
 
 public:

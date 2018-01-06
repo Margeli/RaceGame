@@ -327,16 +327,16 @@ Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 	return ret;
 }
 
-void ModuleSceneIntro::CreateBlades(float x, float y, float z) {
+void ModuleSceneIntro::CreateBlades(float x, float y, float z, Color color) {
 
 	Cube c(1,1, 1);
 	c.SetPos(x, y, z);
 	PhysBody3D* c_body = App->physics->AddBody(c,0);
 
-	Cube c2(0.1f, 12, 1);
+	Cube c2(0.1f, 9.5f, 1);
 	c2.SetPos(x + 5, y, z);
 	PhysBody3D* c2_body = App->physics->AddBody(c2, 50, SceneObjectType::Blade);
-
+	c2.color = Red;
 	c2_body->SetSensor();
 	c2_body->collision_listeners.add(this);
 	
