@@ -126,27 +126,28 @@ btVector3 ModulePlayer::getPos() const
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	if (input){
 	turn = acceleration = brake = 0.0f;
 
-	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
 		App->audio->PlayFx(accelerating_fx);
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
+		if (turn < TURN_DEGREES)
+			turn += TURN_DEGREES;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		if(turn > -TURN_DEGREES)
+		if (turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		acceleration -= MAX_ACCELERATION / 2;
 		//App->audio->PlayFx(moving_backwards_fx);
@@ -161,6 +162,13 @@ update_status ModulePlayer::Update(float dt)
 		}
 		else
 			brake = BRAKE_POWER;
+	}
+}
+	else { // Once won, 
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		{
+			RespawnCar();
+		}
 	}
 	if (turbo) {
 		acceleration += TURBO_ACCELERATION;
@@ -196,6 +204,8 @@ void ModulePlayer::RespawnCar()  {
 	timer.Start();
 	current_laps = 1;
 	half_lap_done = false;
+	App->camera->free_camera = false;
+	input = true;
 }
 
 void ModulePlayer::LapCompleted() {
@@ -203,8 +213,12 @@ void ModulePlayer::LapCompleted() {
 		current_laps++;
 		half_lap_done = false;
 		if (current_laps > LAPS) {
-		//WIN
-		LOG("You Win")
+			Win();		
 		}
 	}
+}
+
+void ModulePlayer::Win() {
+	input = false;
+	App->camera->free_camera = true;
 }
