@@ -47,7 +47,7 @@ public:
 	bool turbo = false;
 
 	mutable Timer timer;
-	float best_time= 80;
+	float best_time= 100;
 	uint current_laps = 1;
 	bool half_lap_done = false;
 	bool input = true;
