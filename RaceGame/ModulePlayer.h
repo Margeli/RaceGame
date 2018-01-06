@@ -27,10 +27,15 @@ public:
 	bool turbo = false;
 	
 	void InitialPos() const;//car spawns to the initial pos
-	void RespawnCar() const;  
-
+	void RespawnCar() ;
+	void LapCompleted();
+	
 	mutable Timer timer;
 	uint current_laps=1;
+	bool half_lap_done = false;
+
+
+
 public:
 
 	uint brakes_fx;

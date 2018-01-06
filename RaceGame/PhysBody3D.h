@@ -12,7 +12,8 @@ enum SceneObjectType {
 	None =0,
 	Turbo,
 	Floor, 
-	Ramp
+	LapSensor, 
+	Goal
 };
 
 // =================================================

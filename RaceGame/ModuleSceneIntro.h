@@ -31,6 +31,7 @@ public:
 	Cube CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = Orange);
 	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
 	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Black);
+	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
 	void StartTerrain();
 
 public:

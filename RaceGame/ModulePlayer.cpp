@@ -188,10 +188,23 @@ void ModulePlayer::InitialPos() const {
 
 
 
-void ModulePlayer::RespawnCar() const {
+void ModulePlayer::RespawnCar()  {
 	InitialPos();
 	vehicle->SetRotation({0,0,0 ,1 });
 	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
 	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
 	timer.Start();
+	current_laps = 1;
+	half_lap_done = false;
+}
+
+void ModulePlayer::LapCompleted() {
+	if (half_lap_done) {
+		current_laps++;
+		half_lap_done = false;
+		if (current_laps > LAPS) {
+		//WIN
+		LOG("You Win")
+		}
+	}
 }

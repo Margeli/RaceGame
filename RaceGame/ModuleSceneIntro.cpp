@@ -63,6 +63,14 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		App->player->RespawnCar();		
 	}
+	else if (body1->type == LapSensor)
+	{
+		App->player->half_lap_done = true;
+	}
+	else if (body1->type == Goal)
+	{
+		App->player->LapCompleted();
+	}
 }
 
 Cube ModuleSceneIntro::CreateNormalFloor(float width, float height, float large, float x, float y, float z, Color color)
@@ -174,6 +182,26 @@ Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, 
 	return ret;
 
 }
+Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
+
+	Cube ret(20, 20, 0.3f);
+	ret.SetPos(x, y, z);
+
+	SceneObjectType type;
+
+	if (isgoal) {
+		type = Goal;
+	}
+	else {
+		type = LapSensor;
+	}
+	PhysBody3D* pbody = App->physics->AddBody(ret, 0, type);
+
+	pbody->SetSensor();
+	pbody->collision_listeners.add(this);
+
+	return ret;
+}
 
 void ModuleSceneIntro::StartTerrain()
 {
@@ -193,6 +221,9 @@ void ModuleSceneIntro::StartTerrain()
 
 	Cube turbo1 = CreateTurboPart(10, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 
-	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);
-	
+	Cube sensor1 = CreateLapSensor( 127.5f, 10, 37.5f);
+	Cube goal = CreateLapSensor(0, 20, 0, true);
+
+	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);	
 }
+
