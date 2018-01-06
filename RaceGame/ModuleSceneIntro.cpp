@@ -307,7 +307,7 @@ Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, 
 
 Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 
-	Cube ret(20, 20, 0.3f);
+	Cube ret(0.3f, 20,20);
 	ret.SetPos(x, y, z);
 
 	SceneObjectType type;
@@ -365,15 +365,13 @@ void ModuleSceneIntro::StartTerrain()
 	CreateEndFloor(5, ROAD_HEIGHT, 20, 12.5f, 10, 85, false, true);
 
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,5, { 1,0,0 });//Mini ramp to jump
-	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump
-
-	
+	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump	
 
 	Cube turbo1 = CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
 	Cube turbo2 = CreateTurboPart(5, ROAD_HEIGHT, 20, 155, 10.2f, -125);
 
-	Cube sensor1 = CreateLapSensor( 127.5f, 10, 37.5f);
-	Cube goal = CreateLapSensor(0, 20, 0, true);
+	Cube sensor1 = CreateLapSensor( 155, 10, -120.5f);
+	Cube goal = CreateLapSensor(12.5f, 20, 85, true);
 
 	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);	
 	CreateBlades(75,23,-45);

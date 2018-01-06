@@ -13,7 +13,7 @@ Decompress the .zip file in any directory and execute the executable inside the 
 
 **D** - Turn the vehicle to the right.
 
-**SPACE** - Activate Brakes.
+**SPACE** - Activate Brakes. && Restart game once won.
 
 **ESC** - Close application.
 
@@ -22,9 +22,11 @@ Decompress the .zip file in any directory and execute the executable inside the 
 
 **Orange** - Turbo.
 
-**Yellow** - Mini ramp to jump.
+**Green** - Mini ramp to jump.
 
-**Black** - Like the map is the rainbow road from Mario Kart, it simulates the space.
+**Red** - Blades that kills you if hit.
+
+**Cyan** - Simulates sky.
 
 ### Link to the github repository: 
 https://github.com/Margeli/RaceGame

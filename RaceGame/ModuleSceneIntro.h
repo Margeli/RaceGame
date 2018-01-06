@@ -12,7 +12,7 @@
 #define LIMIT_COLOR Cyan
 #define ROAD_HEIGHT 0.1f
 
-#define LAPS 1
+#define LAPS 3
 
 struct PhysBody3D;
 struct PhysMotor3D;
@@ -50,8 +50,6 @@ public:
 	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = LIMIT_COLOR);
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
 	void CreateBlades(float x, float y, float z, Color color = BLADE_COLOR);
-
-
 
 public:
 	PhysBody3D* pb_chassis;
