@@ -181,6 +181,39 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 	return ret;
 }
 
+Cube ModuleSceneIntro::CreateEndFloor(float width, float height, float large, float x, float y, float z)
+{
+	if(width > large)
+		for (int i = 1; i < 6; i++)
+		{
+			Cube ret(width, height, large / 5);
+			ret.SetPos(x, y, (z + (large / 5 * i))); 
+			if (i == 2 || i == 4)
+				ret.color = White;
+			else
+				ret.color = Black;
+
+			roads.add(ret);
+			App->physics->AddBody(ret, 0);
+		}
+	else if (width < large)
+	{
+		for (int i = 1; i < 6; i++)
+		{
+			Cube ret(width / 5, height, large);
+			ret.SetPos((x + (large / 5 * i)), y, z);
+			if (i == 2 || i == 4)
+				ret.color = White;
+			else
+				ret.color = Black;
+
+			roads.add(ret);
+			App->physics->AddBody(ret, 0);
+		}
+	}
+
+}
+
 Cube ModuleSceneIntro::CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color)
 {
 	Cube turbo(width, height, large);
@@ -210,6 +243,7 @@ Cube ModuleSceneIntro::CreateRamp(float width, float height, float large, float 
 	return ret;
 
 }
+
 Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color) {
 	Cube ret(width, height, large);
 	ret.SetPos(x, y, z);
@@ -225,6 +259,7 @@ Cube ModuleSceneIntro::CreateLowerLimit(float width, float height, float large, 
 	return ret;
 
 }
+
 Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 
 	Cube ret(20, 20, 0.3f);
@@ -250,10 +285,7 @@ void ModuleSceneIntro::StartTerrain()
 {
 
 	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 149.6f, 0, 13.20f, 0.4f, 2.5f, {1,0,0}, ROAD_COLOR);
-	
-
 	Cube road2 = CreateFloorAndWalls(150, ROAD_HEIGHT, 20, 65, 10, 85, false, true, true, true);
-
 	Cube road3 = CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);
 	Cube road4 = CreateFloorAndWalls(75, ROAD_HEIGHT, 20, 102.5f, 10, -10, false, false, false, true);
 	Cube road5 = CreateFloorAndWalls(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f, true);

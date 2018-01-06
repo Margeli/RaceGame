@@ -99,7 +99,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 20, 10);
+	InitialPos();
 	
 	complete_lap_fx = App->audio->LoadFx("audio/complete_lap.wav");
 	last_lap_fx = App->audio->LoadFx("audio/last_lap.wav");
@@ -199,14 +199,15 @@ update_status ModulePlayer::Update(float dt)
 
 void ModulePlayer::InitialPos() const {
 
-	vehicle->SetPos(0, 20, 10);
+	vehicle->SetRotation({ 0,1,0,1 });
+	vehicle->SetPos(0, 10.1f, 85);	
 }
 
 
 
 void ModulePlayer::RespawnCar()  {
 	InitialPos();
-	vehicle->SetRotation({0,0,0 ,1 });
+	vehicle->SetRotation({0,1,0,1 });
 	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
 	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
 	timer.Start();
