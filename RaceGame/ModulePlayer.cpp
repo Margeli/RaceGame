@@ -236,4 +236,5 @@ void ModulePlayer::Win() {
 	input = false;
 	App->audio->PlayFx(win_fx);
 	App->camera->free_camera = true;
+	timer.Stop();
 }
