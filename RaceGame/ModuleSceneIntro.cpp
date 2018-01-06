@@ -48,6 +48,16 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		item->data.Render();
 	}
+	for (p2List_item<Blades>* item = blades.getFirst(); item; item = item->next)
+	{
+		btQuaternion quat = item->data.body_cube->GetRotation();
+		quat = quat.normalized();
+		float angle = 2 * acos(quat.w()) * 180 / 3.14;
+		item->data.cube.SetRotation(angle, { 0,0,1 });
+		item->data.cube.SetPos(item->data.body_cube->GetPos().x(), item->data.body_cube->GetPos().y(), item->data.body_cube->GetPos().z());
+		item->data.cube.Render();
+
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -282,6 +292,23 @@ Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 	return ret;
 }
 
+void ModuleSceneIntro::CreateBlades(float x, float y, float z, vec3 axis) {
+
+	Cube c(1,1, 1);
+	c.SetPos(x, y, z);
+	PhysBody3D* c_body = App->physics->AddBody(c,0);
+
+	Cube c2(0.1f, 9, 1);
+	c2.SetPos(x + 10, y, z);
+	PhysBody3D* c2_body = App->physics->AddBody(c2, 10);
+	
+
+	App->physics->AddConstraintHinge(*c_body, *c2_body, { 0,0,0 }, { 0,8,0 }, { 0,0,1 }, { 1,0,0 }, true);
+	
+	Blades bl(c2, c, c2_body, c_body);
+	blades.add(bl);
+}
+
 void ModuleSceneIntro::StartTerrain()
 {
 	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 149.6f, 0, 13.20f, 0.4f, 2.5f, {1,0,0}, ROAD_COLOR);
@@ -309,5 +336,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube goal = CreateLapSensor(0, 20, 0, true);
 
 	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);	
+	CreateBlades(85,23,-40, {0,0,0});
+	CreateBlades(85, 23, -35, { 0,0,0 });
 }
 

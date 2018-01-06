@@ -13,6 +13,19 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+struct Blades {
+
+	Blades() {}
+	Blades(Cube c, Cube c2, PhysBody3D* bc, PhysBody3D* bc2) : cube(c), cube2(c2), body_cube(bc), body_cube2(bc2) {}
+		
+	Cube cube;
+	Cube cube2;
+	PhysBody3D* body_cube = nullptr;
+	PhysBody3D* body_cube2 = nullptr;
+
+};
+
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -33,6 +46,7 @@ public:
 	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
 	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Black);
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
+	void CreateBlades(float x, float y, float z, vec3 axis);
 	void StartTerrain();
 
 public:
@@ -58,6 +72,7 @@ public:
 
 	Cube dark_floor;
 	p2List<Cube> roads;
+	p2List<Blades> blades;
 
 	uint turbo_fx = 0;
 	
