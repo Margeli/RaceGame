@@ -45,10 +45,10 @@ public:
 	void CreateNormalFloor(float width, float height, float large, float x, float y, float z, Color color = ROAD_COLOR);
 	void CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft = false, bool wallRight = false, bool wallTop = false, bool wallBack = false, Color color = ROAD_COLOR);
 	void CreateEndFloor(float width, float height, float large, float x, float y, float z, bool wallLeft = false, bool wallRight = false);
-	Cube CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = TURBO_COLOR);
-	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
-	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = LIMIT_COLOR);
-	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
+	void CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color = TURBO_COLOR);
+	void CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
+	void CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = LIMIT_COLOR);
+	void CreateLapSensor(float x, float y, float z, bool isgoal = false);
 	void CreateBlades(float x, float y, float z, Color color = BLADE_COLOR);
 
 public:
