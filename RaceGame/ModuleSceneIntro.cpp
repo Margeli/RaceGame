@@ -220,8 +220,10 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road11 = CreateNormalFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125);
 	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 15.3f, -94.8f ,14.6f, { -1,0,0 }, ROAD_COLOR);
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,7, { 1,0,0 });//Mini ramp to jump
+	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 13, { 0,0,-1 });//Mini ramp to jump
 
 	Cube turbo1 = CreateTurboPart(5, ROAD_HEIGHT, 20, 65, 10.2f, 85);
+	Cube turbo2 = CreateTurboPart(5, ROAD_HEIGHT, 20, 135, 10.2f, -125);
 
 	Cube sensor1 = CreateLapSensor( 127.5f, 10, 37.5f);
 	Cube goal = CreateLapSensor(0, 20, 0, true);
