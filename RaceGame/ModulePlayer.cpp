@@ -99,9 +99,11 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 20, 10);
+	InitialPos();
 	
-	//moving_backwards_fx = App->audio->LoadFx("audio/moving_backwards.wav");
+	complete_lap_fx = App->audio->LoadFx("audio/complete_lap.wav");
+	last_lap_fx = App->audio->LoadFx("audio/last_lap.wav");
+	win_fx = App->audio->LoadFx("audio/win.wav");
 	brakes_fx = App->audio->LoadFx("audio/brakes.wav");
 	accelerating_fx = App->audio->LoadFx("audio/accelerating.wav");
 
@@ -129,10 +131,17 @@ update_status ModulePlayer::Update(float dt)
 	if (input){
 	turn = acceleration = brake = 0.0f;
 
+		
+	 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
+	}
+
+	if (acceleration == MAX_ACCELERATION && SDL_GetTicks() > acceleration_fx_Time)//This function makes the acceleration_fx not sound repetitive
+	{
 		App->audio->PlayFx(accelerating_fx);
+		acceleration_fx_Time = SDL_GetTicks() + 450;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -150,7 +159,6 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		acceleration -= MAX_ACCELERATION / 2;
-		//App->audio->PlayFx(moving_backwards_fx);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
@@ -191,14 +199,15 @@ update_status ModulePlayer::Update(float dt)
 
 void ModulePlayer::InitialPos() const {
 
-	vehicle->SetPos(0, 20, 10);
+	vehicle->SetRotation({ 0,1,0,1 });
+	vehicle->SetPos(0, 10.1f, 85);	
 }
 
 
 
 void ModulePlayer::RespawnCar()  {
 	InitialPos();
-	vehicle->SetRotation({0,0,0 ,1 });
+	vehicle->SetRotation({0,1,0,1 });
 	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
 	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
 	timer.Start();
@@ -210,9 +219,15 @@ void ModulePlayer::RespawnCar()  {
 
 void ModulePlayer::LapCompleted() {
 	if (half_lap_done) {
+		App->audio->PlayFx(complete_lap_fx);
 		current_laps++;
 		half_lap_done = false;
-		if (current_laps > LAPS) {
+		if (current_laps == LAPS)
+			App->audio->PlayFx(last_lap_fx);
+
+		if (current_laps > LAPS) 
+		{
+			App->audio->PlayFx(win_fx);
 			Win();		
 		}
 	}
@@ -220,6 +235,7 @@ void ModulePlayer::LapCompleted() {
 
 void ModulePlayer::Win() {
 	input = false;
+	App->audio->PlayFx(win_fx);
 	App->camera->free_camera = true;
 	timer.Stop();
 }
