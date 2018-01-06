@@ -255,10 +255,10 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road2 = CreateFloorAndWalls(150, ROAD_HEIGHT, 20, 65, 10, 85, false, true, true, true);
 
 	Cube road3 = CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);
-	Cube road4 = CreateNormalFloor(75, ROAD_HEIGHT, 20, 102.5f, 10, -10);
-	Cube road5 = CreateNormalFloor(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f);
-	Cube road6 = CreateNormalFloor(150, ROAD_HEIGHT, 20, 140, 10, -67.5f);
-	Cube road7 = CreateNormalFloor(20, ROAD_HEIGHT, 37.5f, 205, 10, -96.25f);
+	Cube road4 = CreateFloorAndWalls(75, ROAD_HEIGHT, 20, 102.5f, 10, -10, false, false, false, true);
+	Cube road5 = CreateFloorAndWalls(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f, true);
+	Cube road6 = CreateFloorAndWalls(130, ROAD_HEIGHT, 20, 130, 10, -67.5f, true, false, false, true);
+	Cube road7 = CreateFloorAndWalls(20, ROAD_HEIGHT, 57.5f, 205, 10, -86.25f, false, true);
 	Cube road8 = CreateNormalFloor(112.5f, ROAD_HEIGHT, 20, 158.75f, 10, -125);
 	Cube road9 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -117.5f);
 	Cube road10 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f);
