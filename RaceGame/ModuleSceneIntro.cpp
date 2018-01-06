@@ -133,9 +133,50 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 			roads.add(RightWall);
 			App->physics->AddBody(RightWall, 0);
 		}
+	}
+
+	if (wallTop)
+	{
+		if (width > large)
+		{
+			Cube TopWall(1, 3, large);
+			TopWall.SetPos((x + width / 2), y, z);
+			TopWall.color = color;
+			roads.add(TopWall);
+			App->physics->AddBody(TopWall, 0);
+		}
+
+		else if (width < large)
+		{
+			Cube TopWall(width, 3, 1);
+			TopWall.SetPos(x, y, (z + large / 2));
+			TopWall.color = color;
+			roads.add(TopWall);
+			App->physics->AddBody(TopWall, 0);
+		}
 
 	}
 
+	if (wallBack)
+	{
+		if (width > large)
+		{
+			Cube BackWall(1, 3, large);
+			BackWall.SetPos((x - width / 2), y, z);
+			BackWall.color = color;
+			roads.add(BackWall);
+			App->physics->AddBody(BackWall, 0);
+		}
+
+		else if (width < large)
+		{
+			Cube BackWall(width, 3, 1);
+			BackWall.SetPos(x, y, (z - large / 2));
+			BackWall.color = color;
+			roads.add(BackWall);
+			App->physics->AddBody(BackWall, 0);
+		}
+	}
 	App->physics->AddBody(ret, 0);
 	return ret;
 }
@@ -207,8 +248,12 @@ Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 
 void ModuleSceneIntro::StartTerrain()
 {
+
 	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 149.6f, 0, 13.20f, 0.4f, 2.5f, {1,0,0}, ROAD_COLOR);
-	Cube road2 = CreateFloorAndWalls(150, ROAD_HEIGHT, 20, 65, 10, 85, false, true);
+	
+
+	Cube road2 = CreateFloorAndWalls(150, ROAD_HEIGHT, 20, 65, 10, 85, false, true, true, true);
+
 	Cube road3 = CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);
 	Cube road4 = CreateNormalFloor(75, ROAD_HEIGHT, 20, 102.5f, 10, -10);
 	Cube road5 = CreateNormalFloor(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f);
