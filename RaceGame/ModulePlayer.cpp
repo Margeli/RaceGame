@@ -191,7 +191,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%i/%i LAPS    %.1f Km/h    %.1f sec", current_laps, LAPS, vehicle->GetKmh(), timer.ReadSec());
+	sprintf_s(title, "%i/%i LAPS    %.1f Km/h    %.1f sec      Best Time %.1f sec", current_laps, LAPS, vehicle->GetKmh(), timer.ReadSec(), best_time);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
@@ -238,6 +238,9 @@ void ModulePlayer::Win() {
 	App->audio->PlayFx(win_fx);
 	App->camera->free_camera = true;
 	timer.Stop();
+	if (timer.ReadSec() < best_time) {
+		best_time = timer.ReadSec();	
+	}
 }
 
 void ModulePlayer::Hit() {
