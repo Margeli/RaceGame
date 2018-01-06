@@ -207,7 +207,7 @@ Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 
 void ModuleSceneIntro::StartTerrain()
 {
-	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 150, 0, 15.30f, 0.4f, 4.1f, {1,0,0}, ROAD_COLOR);
+	Cube road1 = CreateRamp(20, ROAD_HEIGHT, 149.6f, 0, 13.20f, 0.4f, 2.5f, {1,0,0}, ROAD_COLOR);
 	Cube road2 = CreateFloorAndWalls(150, ROAD_HEIGHT, 20, 65, 10, 85, false, true);
 	Cube road3 = CreateFloorAndWalls(25, ROAD_HEIGHT, 75, 127.5f, 10, 37.5f, true);
 	Cube road4 = CreateNormalFloor(75, ROAD_HEIGHT, 20, 102.5f, 10, -10);
@@ -218,7 +218,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road9 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -117.5f);
 	Cube road10 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f);
 	Cube road11 = CreateNormalFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125);
-	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 15.3f, -94.8f ,14.6f, { -1,0,0 }, ROAD_COLOR);
+	Cube road12 = CreateRamp(20, ROAD_HEIGHT, 42.2f, 0, 13.2f, -94.8f ,9, { -1,0,0 }, ROAD_COLOR);
 	Cube ramp1 = CreateRamp(20, ROAD_HEIGHT, 10, 130, 10.5, -24,5, { 1,0,0 });//Mini ramp to jump
 	Cube ramp2 = CreateRamp(10, ROAD_HEIGHT, 7.5f, 98, 10.5, -125, 8, { 0,0,-1 });//Mini ramp to jump
 
