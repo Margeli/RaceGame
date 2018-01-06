@@ -13,7 +13,8 @@ enum SceneObjectType {
 	Turbo,
 	Floor, 
 	LapSensor, 
-	Goal
+	Goal,
+	Blade
 };
 
 // =================================================

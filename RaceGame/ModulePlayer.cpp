@@ -239,3 +239,8 @@ void ModulePlayer::Win() {
 	App->camera->free_camera = true;
 	timer.Stop();
 }
+
+void ModulePlayer::Hit() {
+	//fx of hitted by blade
+	RespawnCar();
+}

@@ -28,6 +28,7 @@ public:
 	void RespawnCar() ;
 	void LapCompleted();
 	void Win();
+	void Hit();
 
 public:
 

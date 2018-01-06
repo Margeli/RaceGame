@@ -50,13 +50,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	}
 	for (p2List_item<Blades>* item = blades.getFirst(); item; item = item->next)
 	{
-		btQuaternion quat = item->data.body_cube->GetRotation();
+		btQuaternion quat = item->data.body_cube2->GetRotation();
 		quat = quat.normalized();
 		float angle = 2 * acos(quat.w()) * 180 / 3.14;
-		item->data.cube.SetRotation(angle, { 0,0,1 });
-		item->data.cube.SetPos(item->data.body_cube->GetPos().x(), item->data.body_cube->GetPos().y(), item->data.body_cube->GetPos().z());
-		item->data.cube.Render();
-
+		float den = sqrt(1 - quat.w() *quat.w());
+		item->data.cube2.SetRotation(angle, { quat.x()/den,quat.y()/den,quat.z()/den });		
+		item->data.cube2.SetPos(item->data.body_cube2->GetPos().x(), item->data.body_cube2->GetPos().y(), item->data.body_cube2->GetPos().z());
+		item->data.cube2.Render();		
 	}
 
 	return UPDATE_CONTINUE;
@@ -80,6 +80,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	else if (body1->type == Goal)
 	{
 		App->player->LapCompleted();
+	}
+	else if (body1->type == Blade)
+	{
+		App->player->Hit();
 	}
 }
 
@@ -205,6 +209,7 @@ Cube ModuleSceneIntro::CreateEndFloor(float width, float height, float large, fl
 
 			roads.add(ret);
 			App->physics->AddBody(ret, 0);
+			return ret;
 		}
 	else if (width < large)
 	{
@@ -219,9 +224,10 @@ Cube ModuleSceneIntro::CreateEndFloor(float width, float height, float large, fl
 
 			roads.add(ret);
 			App->physics->AddBody(ret, 0);
+			return ret;
 		}
 	}
-
+	
 }
 
 Cube ModuleSceneIntro::CreateTurboPart(float width, float height, float large, float x, float y, float z, Color color)
@@ -299,12 +305,15 @@ void ModuleSceneIntro::CreateBlades(float x, float y, float z, vec3 axis) {
 
 	Cube c2(0.1f, 9, 1);
 	c2.SetPos(x + 10, y, z);
-	PhysBody3D* c2_body = App->physics->AddBody(c2, 10);
+	PhysBody3D* c2_body = App->physics->AddBody(c2, 10, SceneObjectType::Blade);
+
+	c2_body->SetSensor();
+	c2_body->collision_listeners.add(this);
 	
 
 	App->physics->AddConstraintHinge(*c_body, *c2_body, { 0,0,0 }, { 0,8,0 }, { 0,0,1 }, { 1,0,0 }, true);
 	
-	Blades bl(c2, c, c2_body, c_body);
+	Blades bl(c, c2, c_body, c2_body);
 	blades.add(bl);
 }
 

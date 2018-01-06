@@ -70,5 +70,6 @@ void PhysBody3D::SetRotation(btQuaternion rotation) const {
 btQuaternion PhysBody3D::GetRotation() const {
 
 	btTransform t = body->getWorldTransform();
+
 	return t.getRotation();
 }
