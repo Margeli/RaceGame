@@ -37,6 +37,7 @@ public:
 	uint last_lap_fx = 0;
 	uint win_fx = 0;
 	uint accelerating_fx = 0;
+	uint blade_hit_fx = 0;
 
 	PhysVehicle3D* vehicle;
 	float turn = 0;

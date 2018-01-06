@@ -106,6 +106,7 @@ bool ModulePlayer::Start()
 	win_fx = App->audio->LoadFx("audio/win.wav");
 	brakes_fx = App->audio->LoadFx("audio/brakes.wav");
 	accelerating_fx = App->audio->LoadFx("audio/accelerating.wav");
+	blade_hit_fx = App->audio->LoadFx("audio/blade_hit.wav");
 
 	timer.Start();
 
@@ -203,8 +204,6 @@ void ModulePlayer::InitialPos() const {
 	vehicle->SetPos(5, 10.1f, 85);	
 }
 
-
-
 void ModulePlayer::RespawnCar()  {
 	InitialPos();
 	vehicle->SetRotation({0,1,0,1 });
@@ -244,6 +243,6 @@ void ModulePlayer::Win() {
 }
 
 void ModulePlayer::Hit() {
-	//fx of hitted by blade
+	App->audio->PlayFx(blade_hit_fx);
 	RespawnCar();
 }
