@@ -296,15 +296,15 @@ Cube ModuleSceneIntro::CreateLapSensor(float x, float y, float z, bool isgoal) {
 	return ret;
 }
 
-void ModuleSceneIntro::CreateBlades(float x, float y, float z, vec3 axis) {
+void ModuleSceneIntro::CreateBlades(float x, float y, float z) {
 
 	Cube c(1,1, 1);
 	c.SetPos(x, y, z);
 	PhysBody3D* c_body = App->physics->AddBody(c,0);
 
-	Cube c2(0.1f, 9, 1);
-	c2.SetPos(x + 10, y, z);
-	PhysBody3D* c2_body = App->physics->AddBody(c2, 10, SceneObjectType::Blade);
+	Cube c2(0.1f, 12, 1);
+	c2.SetPos(x + 5, y, z);
+	PhysBody3D* c2_body = App->physics->AddBody(c2, 50, SceneObjectType::Blade);
 
 	c2_body->SetSensor();
 	c2_body->collision_listeners.add(this);
@@ -346,7 +346,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube goal = CreateLapSensor(0, 20, 0, true);
 
 	Cube dark_floor = CreateLowerLimit(1000, 1, 1000, 0, 4.5f, 0);	
-	CreateBlades(85,23,-40, {0,0,0});
-	CreateBlades(85, 23, -35, { 0,0,0 });
+	CreateBlades(75,23,-45);
+	CreateBlades(75, 23, -30);
 }
 

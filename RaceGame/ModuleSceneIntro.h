@@ -46,7 +46,7 @@ public:
 	Cube CreateRamp(float width, float height, float large, float x, float y, float z,float degree,  vec3 axis, Color color = RAMP_COLOR);
 	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Cyan);
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
-	void CreateBlades(float x, float y, float z, vec3 axis);
+	void CreateBlades(float x, float y, float z);
 	void StartTerrain();
 
 public:
