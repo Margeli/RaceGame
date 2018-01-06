@@ -85,7 +85,7 @@ Cube ModuleSceneIntro::CreateNormalFloor(float width, float height, float large,
 	return ret;
 }
 
-Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft, bool wallRight, Color color)
+Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft, bool wallRight, bool wallTop, bool wallBack, Color color)
 {
 	Cube ret(width, height, large);
 	ret.SetPos(x, y, z);
