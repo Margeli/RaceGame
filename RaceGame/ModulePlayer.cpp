@@ -200,7 +200,7 @@ update_status ModulePlayer::Update(float dt)
 void ModulePlayer::InitialPos() const {
 
 	vehicle->SetRotation({ 0,1,0,1 });
-	vehicle->SetPos(0, 10.1f, 85);	
+	vehicle->SetPos(5, 10.1f, 85);	
 }
 
 

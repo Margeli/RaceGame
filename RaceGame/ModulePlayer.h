@@ -24,7 +24,7 @@ public:
 	bool CleanUp();
 	btVector3 getPos() const;//Get axis of orientation of the player	
 	
-	void InitialPos() const;//car spawns to the initial pos
+	void InitialPos() const;//Car spawns to the initial pos
 	void RespawnCar() ;
 	void LapCompleted();
 	void Win();
@@ -37,8 +37,6 @@ public:
 	uint last_lap_fx = 0;
 	uint win_fx = 0;
 	uint accelerating_fx = 0;
-
-
 
 	PhysVehicle3D* vehicle;
 	float turn = 0;

@@ -36,8 +36,7 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-
-
+	void StartTerrain();
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	Cube CreateNormalFloor(float width, float height, float large, float x, float y, float z, Color color = ROAD_COLOR);
 	void CreateFloorAndWalls(float width, float height, float large, float x, float y, float z, bool wallLeft = false, bool wallRight = false, bool wallTop = false, bool wallBack = false, Color color = ROAD_COLOR);
@@ -47,17 +46,8 @@ public:
 	Cube CreateLowerLimit(float width, float height, float large, float x, float y, float z, Color color = Cyan);
 	Cube CreateLapSensor(float x, float y, float z, bool isgoal = false);
 	void CreateBlades(float x, float y, float z, vec3 axis);
-	void StartTerrain();
 
 public:
-	/*
-	PhysBody3D* pb_snake[MAX_SNAKE];
-	Sphere s_snake[MAX_SNAKE];
-
-	PhysBody3D* pb_snake2[MAX_SNAKE];
-	Sphere s_snake2[MAX_SNAKE];
-	*/
-
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
 
