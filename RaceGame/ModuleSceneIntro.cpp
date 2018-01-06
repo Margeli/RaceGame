@@ -98,7 +98,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		if (width > large)
 		{
 			Cube LeftWall(width, 3, 1);
-			LeftWall.SetPos(x, y, (z -  large / 2) );
+			LeftWall.SetPos(x, y + 1.5f, (z -  large / 2) );
 			LeftWall.color = color;
 			roads.add(LeftWall);
 			App->physics->AddBody(LeftWall, 0);
@@ -107,7 +107,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		else if (width < large)
 		{
 			Cube LeftWall(1, 3, large);
-			LeftWall.SetPos((x - width / 2), y, z);
+			LeftWall.SetPos((x - width / 2), y + 1.5f, z);
 			LeftWall.color = color;
 			roads.add(LeftWall);
 			App->physics->AddBody(LeftWall, 0);
@@ -119,7 +119,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		if (width > large)
 		{
 			Cube RightWall(width, 3, 1);
-			RightWall.SetPos(x, y, (z + large / 2));
+			RightWall.SetPos(x, y + 1.5f, (z + large / 2));
 			RightWall.color = color;
 			roads.add(RightWall);
 			App->physics->AddBody(RightWall, 0);
@@ -128,7 +128,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		else if (width < large)
 		{
 			Cube RightWall(1, 3, large);
-			RightWall.SetPos((x + width / 2), y, z);
+			RightWall.SetPos((x + width / 2), y + 1.5f, z);
 			RightWall.color = color;
 			roads.add(RightWall);
 			App->physics->AddBody(RightWall, 0);
@@ -140,7 +140,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		if (width > large)
 		{
 			Cube TopWall(1, 3, large);
-			TopWall.SetPos((x + width / 2), y, z);
+			TopWall.SetPos((x + width / 2), y + 1.5f, z);
 			TopWall.color = color;
 			roads.add(TopWall);
 			App->physics->AddBody(TopWall, 0);
@@ -149,7 +149,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		else if (width < large)
 		{
 			Cube TopWall(width, 3, 1);
-			TopWall.SetPos(x, y, (z + large / 2));
+			TopWall.SetPos(x, y + 1.5f, (z + large / 2));
 			TopWall.color = color;
 			roads.add(TopWall);
 			App->physics->AddBody(TopWall, 0);
@@ -162,7 +162,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		if (width > large)
 		{
 			Cube BackWall(1, 3, large);
-			BackWall.SetPos((x - width / 2), y, z);
+			BackWall.SetPos((x - width / 2), y + 1.5f, z);
 			BackWall.color = color;
 			roads.add(BackWall);
 			App->physics->AddBody(BackWall, 0);
@@ -171,7 +171,7 @@ Cube ModuleSceneIntro::CreateFloorAndWalls(float width, float height, float larg
 		else if (width < large)
 		{
 			Cube BackWall(width, 3, 1);
-			BackWall.SetPos(x, y, (z - large / 2));
+			BackWall.SetPos(x, y + 1.5f, (z - large / 2));
 			BackWall.color = color;
 			roads.add(BackWall);
 			App->physics->AddBody(BackWall, 0);
@@ -259,7 +259,7 @@ void ModuleSceneIntro::StartTerrain()
 	Cube road5 = CreateFloorAndWalls(25, ROAD_HEIGHT, 37.5f, 77.5f, 10, -38.75f, true);
 	Cube road6 = CreateFloorAndWalls(130, ROAD_HEIGHT, 20, 130, 10, -67.5f, true, false, false, true);
 	Cube road7 = CreateFloorAndWalls(20, ROAD_HEIGHT, 57.5f, 205, 10, -86.25f, false, true);
-	Cube road8 = CreateNormalFloor(112.5f, ROAD_HEIGHT, 20, 158.75f, 10, -125);
+	Cube road8 = CreateFloorAndWalls(112.5f, ROAD_HEIGHT, 20, 158.75f, 10, -125, false, false, true, false);
 	Cube road9 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -117.5f);
 	Cube road10 = CreateNormalFloor(75, ROAD_HEIGHT, 7.5f, 65, 10, -132.5f);
 	Cube road11 = CreateNormalFloor(37.5f, ROAD_HEIGHT, 20, 8.75f, 10, -125);
