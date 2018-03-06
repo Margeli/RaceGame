@@ -38,7 +38,7 @@ on a laptop GPU but performance is likely not very good. Note that
 often an OpenCL drivers fails to compile a kernel. Some unit tests exist to
 track down the issue, but more work is required to cover all OpenCL kernels.
 
-## License
+## License 
 
 All source code files are licensed under the permissive zlib license
 (http://opensource.org/licenses/Zlib) unless marked differently in a particular folder/file.
